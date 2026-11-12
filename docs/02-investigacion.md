@@ -10,7 +10,7 @@ La comparación usa documentación y páginas públicas de los operadores. La co
 
 | Referente | Qué describe públicamente | Qué conviene evaluar para el proyecto |
 | --- | --- | --- |
-| **Servify, Colombia** | Solicitudes de productos y servicios, alertas por ciudad y categoría, cotizaciones, chat, reseñas y gestor de compras para empresas. [Cómo funciona Servify](https://servify.com.co/como-funciona) | Es el referente más cercano entre los consultados. Medir si un formulario específico para madera y una comparación de precio final, disponibilidad y entrega mejoran una compra real. |
+| **Servify, Colombia** | Solicitudes de productos y servicios, alertas por ciudad y categoría, cotizaciones, chat, reseñas y gestor de compras para empresas. [Cómo funciona Servify](https://servify.com.co/como-funciona) | Es el referente más cercano entre los consultados. Probar si un formulario común y una comparación de precio total, disponibilidad y plazo sirven en distintos rubros. |
 | **Jopi, Colombia** | Publicación de necesidades y comparación de ofertas de aliados cercanos, centrada en servicios del hogar. [Jopi](https://jopiapp.com/) | Revisar cómo explica el recorrido y qué información solicita antes de mostrar ofertas. |
 | **Construrama a la mano, Colombia** | CEMEX documenta un canal de WhatsApp y un marketplace para conectar compradores de materiales con ferreterías de su red. [Términos de Construrama te Conecta](https://www.cemexcolombia.com/documents/2563549/6728166/TyC%2BEcosistema%2BConstrurama%2Bte%2BConecta%2B%281%29.pdf/2aa04ee4-d149-40fd-50cb-90e68104e31f?t=1763743130643&version=1.0) | Evaluar qué valor añade comparar varios comercios cuando el comprador ya tiene un proveedor habitual o puede pedir una cotización por WhatsApp. |
 | **GBP Ferretería, Barranquilla** | Un comercio local ofrece cotización por WhatsApp y abastecimiento institucional con despacho. [GBP Ferretería](https://gbpferreteria.com/) | Comparar el piloto con el canal directo en tiempo, certeza de inventario y costo de coordinación. |
@@ -21,13 +21,13 @@ El borrador de investigación ubicaba a Pidekio entre los casos colombianos. Su 
 
 ## Qué debe demostrar el piloto local
 
-Las fuentes públicas confirman que el mecanismo de cotizar una solicitud existe y que hay comercios que atienden compras de materiales por canales digitales. La propuesta de comenzar por madera dimensionada en Barranquilla surge del caso aportado y requiere evidencia local de recurrencia, rapidez y cierre. Servify y el WhatsApp directo del proveedor son comparaciones concretas para las entrevistas y el piloto. [Servify](https://servify.com.co/como-funciona) · [GBP Ferretería](https://gbpferreteria.com/)
+Los referentes consultados muestran flujos de cotización de productos y de servicios. El piloto abarcará todo Galapa con un grupo reducido de compradores y comercios de distintos rubros. Debe recoger evidencia sobre qué necesidades aparecen, cuáles atienden los comercios invitados y cuáles terminan en una compra o servicio confirmado. Servify y la cotización directa por WhatsApp son referencias para las entrevistas. [Servify](https://servify.com.co/como-funciona) · [GBP Ferretería](https://gbpferreteria.com/)
 
 | Pregunta | Evidencia a recoger | Decisión que informa |
 | --- | --- | --- |
-| ¿Quién hace compras repetidas y cómo resuelve la cotización hoy? | Última compra real, comercios consultados, tiempo hasta confirmar disponibilidad y resultado. | Elegir entre contratistas, talleres u otro grupo de compradores. |
-| ¿Qué impide que dos cotizaciones se puedan comparar? | Medidas ambiguas, unidades distintas, precio sin entrega, inventario sin confirmar o mínimos de compra. | Definir qué campos son obligatorios y qué atributos deben figurar en el comparador. |
-| ¿Cuánto esfuerzo le cuesta a un comercio cotizar y cerrar? | Tiempo de respuesta, razones para ignorar una solicitud, conversión de sus cotizaciones y pedidos que puede atender. | Ajustar categoría, cobertura y avisos. |
+| ¿Qué necesidades llevan a los compradores a pedir varias cotizaciones? | Última compra o servicio contratado, comercios consultados, tiempo hasta confirmar disponibilidad y resultado. | Entender qué rubros y perfiles de comprador generan solicitudes repetidas. |
+| ¿Qué impide que dos cotizaciones se puedan comparar? | Descripciones ambiguas, cargos de entrega o visita sin informar, disponibilidad por confirmar o diferencias en lo que incluye el servicio. | Definir qué campos son comunes y qué detalles se solicitan cuando aplican. |
+| ¿Cuánto esfuerzo le cuesta a un comercio cotizar y cerrar? | Tiempo de respuesta, razones para ignorar una solicitud, conversión de sus cotizaciones y zonas que puede atender. | Ajustar la incorporación de proveedores y los avisos según rubro y zona. |
 | ¿Qué compras necesitan negociación antes de elegir? | Solicitudes que se resolvieron por llamada, cambio de cantidades o sustitución de producto, y compras que se perdieron por esa fricción. | Priorizar chat, edición de solicitud o contraofertas según frecuencia e impacto. |
 | ¿Qué les da confianza para seguir? | Preferencia por proveedor conocido, comprobantes solicitados, motivos de cancelación, controversias y disposición a valorar. | Definir incorporación de proveedores, soporte y reputación. |
 
