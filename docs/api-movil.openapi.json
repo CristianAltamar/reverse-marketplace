@@ -1,0 +1,477 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Reverse Marketplace · API móvil",
+    "version": "0.2.0-draft",
+    "description": "Primer recorrido para cuentas de prueba en Galapa. Los catálogos y las cuentas pueden precargarse durante la integración."
+  },
+  "servers": [{ "url": "/v1" }],
+  "security": [{ "bearerAuth": [] }],
+  "paths": {
+    "/requests": {
+      "get": {
+        "operationId": "listOwnRequests",
+        "summary": "Listar las solicitudes propias del comprador",
+        "parameters": [{ "$ref": "#/components/parameters/Cursor" }, { "$ref": "#/components/parameters/Limit" }],
+        "responses": {
+          "200": {
+            "description": "Página de solicitudes propias",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OwnRequestPage" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      },
+      "post": {
+        "operationId": "createRequestDraft",
+        "summary": "Guardar una solicitud en borrador",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreateRequest" } } }
+        },
+        "responses": {
+          "201": { "$ref": "#/components/responses/OwnRequest" },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/requests/{requestId}/publish": {
+      "parameters": [{ "$ref": "#/components/parameters/RequestId" }],
+      "post": {
+        "operationId": "publishRequest",
+        "summary": "Publicar un borrador propio",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/OwnRequest" },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/opportunities": {
+      "get": {
+        "operationId": "listOpportunities",
+        "summary": "Listar las oportunidades abiertas para el comercio aprobado",
+        "parameters": [{ "$ref": "#/components/parameters/Cursor" }, { "$ref": "#/components/parameters/Limit" }],
+        "responses": {
+          "200": {
+            "description": "Página de oportunidades elegibles",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OpportunityPage" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/requests/{requestId}/my-offer": {
+      "parameters": [{ "$ref": "#/components/parameters/RequestId" }],
+      "get": {
+        "operationId": "getOwnOffer",
+        "summary": "Consultar la última revisión y estado de la cotización propia",
+        "responses": {
+          "200": { "$ref": "#/components/responses/Offer" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      },
+      "put": {
+        "operationId": "putOwnOffer",
+        "summary": "Crear o actualizar la cotización propia",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WriteOffer" } } }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/Offer" },
+          "201": { "$ref": "#/components/responses/Offer" },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/requests/{requestId}/offers": {
+      "parameters": [{ "$ref": "#/components/parameters/RequestId" }],
+      "get": {
+        "operationId": "listRequestOffers",
+        "summary": "Consultar las cotizaciones recibidas como comprador titular",
+        "responses": {
+          "200": {
+            "description": "Última revisión por comercio, con su estado",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Offer" } }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/requests/{requestId}/acceptance": {
+      "parameters": [{ "$ref": "#/components/parameters/RequestId" }],
+      "post": {
+        "operationId": "acceptOffer",
+        "summary": "Aceptar una revisión exacta y consultar el acuerdo resultante",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AcceptOffer" } } }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/Agreement" },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/agreements/{agreementId}": {
+      "parameters": [{ "$ref": "#/components/parameters/AgreementId" }],
+      "get": {
+        "operationId": "getAgreement",
+        "summary": "Consultar el acuerdo como una de las partes",
+        "responses": {
+          "200": { "$ref": "#/components/responses/Agreement" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/agreements/{agreementId}/complete": {
+      "parameters": [{ "$ref": "#/components/parameters/AgreementId" }],
+      "post": {
+        "operationId": "completeAgreement",
+        "summary": "Confirmar el cumplimiento como comprador titular",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/Agreement" },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/agreements/{agreementId}/cancellation-requests": {
+      "parameters": [{ "$ref": "#/components/parameters/AgreementId" }],
+      "post": {
+        "operationId": "requestAgreementCancellation",
+        "summary": "Abrir un caso de cancelación sin cancelar el acuerdo",
+        "parameters": [{ "$ref": "#/components/parameters/IdempotencyKey" }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CancellationInput" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Caso registrado. El acuerdo sigue vigente hasta la resolución.",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CancellationCase" } } }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "409": { "$ref": "#/components/responses/Conflict" },
+          "422": { "$ref": "#/components/responses/Invalid" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer" }
+    },
+    "parameters": {
+      "RequestId": { "name": "requestId", "in": "path", "required": true, "schema": { "$ref": "#/components/schemas/Id" } },
+      "AgreementId": { "name": "agreementId", "in": "path", "required": true, "schema": { "$ref": "#/components/schemas/Id" } },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "description": "Clave generada por el cliente y conservada durante los reintentos de la misma acción.",
+        "schema": { "type": "string", "minLength": 1, "maxLength": 128 }
+      },
+      "Cursor": { "name": "cursor", "in": "query", "schema": { "type": "string", "minLength": 1 } },
+      "Limit": { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 } }
+    },
+    "responses": {
+      "OwnRequest": {
+        "description": "Solicitud visible al comprador titular",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OwnRequest" } } }
+      },
+      "Offer": {
+        "description": "Cotización y su revisión vigente o último estado registrado",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Offer" } } }
+      },
+      "Agreement": {
+        "description": "Acuerdo con datos proyectados para la parte que consulta",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Agreement" } } }
+      },
+      "BadRequest": {
+        "description": "Formato de petición incorrecto o encabezado requerido ausente",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "Unauthorized": {
+        "description": "Sesión ausente, inválida o vencida",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "Forbidden": {
+        "description": "Cuenta sin acceso a la beta o sin permiso para usar la operación",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "NotFound": {
+        "description": "Recurso inexistente o fuera del alcance de la cuenta",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "Conflict": {
+        "description": "Conflicto de estado, vigencia, revisión o idempotencia",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "Invalid": {
+        "description": "La petición es legible y contiene valores inválidos",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      },
+      "RateLimited": {
+        "description": "Límite temporal de peticiones",
+        "headers": { "Retry-After": { "description": "Segundos de espera, cuando el servidor los informa.", "schema": { "type": "integer", "minimum": 1 } } },
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      }
+    },
+    "schemas": {
+      "Id": { "type": "string", "format": "uuid" },
+      "Timestamp": { "type": "string", "format": "date-time" },
+      "MoneyCop": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+      "Mode": { "type": "string", "enum": ["delivery", "pickup", "on_site_service", "provider_site_service"] },
+      "RequestFields": {
+        "type": "object",
+        "required": ["type", "categoryCode", "zoneCode", "description", "neededBy"],
+        "properties": {
+          "type": { "type": "string", "enum": ["product", "service"] },
+          "categoryCode": { "type": "string", "minLength": 1 },
+          "zoneCode": { "type": "string", "minLength": 1 },
+          "zoneHint": { "type": "string", "minLength": 1, "description": "Referencia aproximada, requerida cuando la zona es OTHER." },
+          "description": { "type": "string", "minLength": 1 },
+          "neededBy": { "$ref": "#/components/schemas/Timestamp" },
+          "quantity": { "type": "number", "exclusiveMinimum": 0 },
+          "unit": { "type": "string", "minLength": 1 },
+          "preferredMode": { "$ref": "#/components/schemas/Mode" }
+        },
+        "dependentRequired": { "quantity": ["unit"], "unit": ["quantity"] },
+        "if": { "required": ["zoneCode"], "properties": { "zoneCode": { "const": "OTHER" } } },
+        "then": { "required": ["zoneHint"] }
+      },
+      "CreateRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/RequestFields" },
+          { "type": "object", "properties": { "budgetCop": { "$ref": "#/components/schemas/MoneyCop" } } }
+        ],
+        "unevaluatedProperties": false
+      },
+      "OwnRequest": {
+        "allOf": [
+          { "$ref": "#/components/schemas/RequestFields" },
+          {
+            "type": "object",
+            "required": ["id", "status"],
+            "properties": {
+              "id": { "$ref": "#/components/schemas/Id" },
+              "status": { "type": "string", "enum": ["draft", "open", "awarded", "expired", "cancelled"] },
+              "budgetCop": { "$ref": "#/components/schemas/MoneyCop" },
+              "publishedAt": { "$ref": "#/components/schemas/Timestamp" },
+              "expiresAt": { "$ref": "#/components/schemas/Timestamp" },
+              "agreementId": { "$ref": "#/components/schemas/Id" }
+            }
+          }
+        ],
+        "unevaluatedProperties": false
+      },
+      "Opportunity": {
+        "allOf": [
+          { "$ref": "#/components/schemas/RequestFields" },
+          {
+            "type": "object",
+            "required": ["id", "publishedAt", "expiresAt"],
+            "properties": {
+              "id": { "$ref": "#/components/schemas/Id" },
+              "publishedAt": { "$ref": "#/components/schemas/Timestamp" },
+              "expiresAt": { "$ref": "#/components/schemas/Timestamp" }
+            }
+          }
+        ],
+        "unevaluatedProperties": false
+      },
+      "OwnRequestPage": {
+        "type": "object",
+        "required": ["items"],
+        "properties": {
+          "items": { "type": "array", "items": { "$ref": "#/components/schemas/OwnRequest" } },
+          "nextCursor": { "type": "string", "minLength": 1 }
+        }
+      },
+      "OpportunityPage": {
+        "type": "object",
+        "required": ["items"],
+        "properties": {
+          "items": { "type": "array", "items": { "$ref": "#/components/schemas/Opportunity" } },
+          "nextCursor": { "type": "string", "minLength": 1 }
+        }
+      },
+      "OfferTerms": {
+        "type": "object",
+        "required": ["scope", "availability", "mode", "promisedAt", "priceCop", "extraChargesCop", "validUntil"],
+        "properties": {
+          "scope": { "type": "string", "minLength": 1, "description": "Qué cubre la oferta y qué cargos adicionales se declararon." },
+          "availability": { "type": "string", "minLength": 1 },
+          "mode": { "$ref": "#/components/schemas/Mode" },
+          "promisedAt": { "$ref": "#/components/schemas/Timestamp" },
+          "priceCop": { "$ref": "#/components/schemas/MoneyCop" },
+          "extraChargesCop": { "$ref": "#/components/schemas/MoneyCop" },
+          "validUntil": { "$ref": "#/components/schemas/Timestamp" }
+        }
+      },
+      "PricedOfferTerms": {
+        "allOf": [
+          { "$ref": "#/components/schemas/OfferTerms" },
+          { "type": "object", "required": ["totalCop"], "properties": { "totalCop": { "$ref": "#/components/schemas/MoneyCop" } } }
+        ],
+        "unevaluatedProperties": false
+      },
+      "WriteOffer": {
+        "type": "object",
+        "required": ["expectedRevision", "terms"],
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": { "type": "integer", "minimum": 0, "description": "Cero crea una cotización. Un valor positivo indica la revisión que se está reemplazando." },
+          "terms": { "$ref": "#/components/schemas/OfferTerms", "unevaluatedProperties": false }
+        }
+      },
+      "ProviderSummary": {
+        "type": "object",
+        "required": ["id", "displayName", "ratingCount"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/components/schemas/Id" },
+          "displayName": { "type": "string", "minLength": 1 },
+          "ratingCount": { "type": "integer", "minimum": 0 },
+          "averageRating": { "type": "number", "minimum": 1, "maximum": 5, "description": "Se omite cuando el comercio aún carece de reseñas publicadas." }
+        }
+      },
+      "Offer": {
+        "type": "object",
+        "required": ["id", "requestId", "revision", "status", "provider", "terms"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/components/schemas/Id" },
+          "requestId": { "$ref": "#/components/schemas/Id" },
+          "revision": { "type": "integer", "minimum": 1 },
+          "status": { "type": "string", "enum": ["active", "accepted", "withdrawn", "expired", "closed"] },
+          "provider": { "$ref": "#/components/schemas/ProviderSummary" },
+          "terms": { "$ref": "#/components/schemas/PricedOfferTerms" }
+        }
+      },
+      "AcceptOffer": {
+        "type": "object",
+        "required": ["offerId", "revision"],
+        "additionalProperties": false,
+        "properties": {
+          "offerId": { "$ref": "#/components/schemas/Id" },
+          "revision": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "CommercialContact": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": false,
+        "properties": {
+          "email": { "type": "string", "format": "email" },
+          "phone": { "type": "string", "minLength": 1 }
+        }
+      },
+      "Agreement": {
+        "type": "object",
+        "required": ["id", "requestId", "offerId", "offerRevision", "status", "acceptedAt", "provider", "terms", "cancellationPending"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/components/schemas/Id" },
+          "requestId": { "$ref": "#/components/schemas/Id" },
+          "offerId": { "$ref": "#/components/schemas/Id" },
+          "offerRevision": { "type": "integer", "minimum": 1 },
+          "status": { "type": "string", "enum": ["agreed", "completed", "cancelled"] },
+          "acceptedAt": { "$ref": "#/components/schemas/Timestamp" },
+          "completedAt": { "$ref": "#/components/schemas/Timestamp" },
+          "cancelledAt": { "$ref": "#/components/schemas/Timestamp" },
+          "provider": { "$ref": "#/components/schemas/ProviderSummary" },
+          "terms": { "$ref": "#/components/schemas/PricedOfferTerms" },
+          "commercialContact": { "$ref": "#/components/schemas/CommercialContact", "description": "Se incluye en la vista del comprador cuando tiene permiso vigente para consultarlo." },
+          "cancellationPending": { "type": "boolean" }
+        }
+      },
+      "CancellationInput": {
+        "type": "object",
+        "required": ["reason"],
+        "additionalProperties": false,
+        "properties": { "reason": { "type": "string", "minLength": 1 } }
+      },
+      "CancellationCase": {
+        "type": "object",
+        "required": ["id", "agreementId", "status", "createdAt"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/components/schemas/Id" },
+          "agreementId": { "$ref": "#/components/schemas/Id" },
+          "status": { "type": "string", "enum": ["open", "approved", "rejected"] },
+          "createdAt": { "$ref": "#/components/schemas/Timestamp" }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": ["code", "message", "requestId"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "requestId": { "type": "string", "description": "Identificador de rastreo de la petición HTTP." },
+          "fields": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "Errores de validación por campo cuando corresponde."
+          }
+        }
+      }
+    }
+  }
+}

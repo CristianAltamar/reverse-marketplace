@@ -28,7 +28,7 @@ Por ejemplo, para una torta el comprador puede indicar porciones, fecha y modali
 
 - **Comprador:** crear solicitud, ver solicitudes propias, comparar cotizaciones, revisar el acuerdo y confirmar cumplimiento.
 - **Proveedor:** completar perfil comercial, consultar oportunidades, enviar o actualizar cotización y consultar acuerdos.
-- **Ambos:** registro, perfil y reputación, bandeja de avisos, notificaciones push de eventos relevantes, reportar contenido o usuarios, bloquear usuarios, contactar a soporte y solicitar eliminación de cuenta. El flujo principal funciona aunque la persona rechace las notificaciones push.
+- **Ambos:** acceso por código de correo, perfil y reputación, bandeja de avisos, notificaciones push, reportes, bloqueo, soporte y eliminación de cuenta. Una misma cuenta puede comprar y activar el perfil comercial tras aprobación. El flujo principal funciona aunque la persona rechace las notificaciones push.
 - **Operaciones:** un panel web interno para aprobar proveedores, atender reportes, ocultar contenido, suspender cuentas, resolver incidencias con historial y consultar métricas básicas.
 
 ## Alcance por fases
@@ -68,4 +68,4 @@ Registrar por solicitud el rubro, la zona, la hora de publicación, los comercio
 - Designar responsables de reclutamiento, moderación y atención de acuerdos con problemas. Acordar qué información del comercio ve el comprador en cada paso y qué evidencia pide soporte.
 - Probar el acceso por correo en teléfonos de los participantes y registrar cuántos usan Android y cuántos iOS para planificar la beta y el orden de publicación.
 
-Continúa en [investigación de mercado](02-investigacion.md), [bases técnicas](03-bases-tecnicas.md) y [resumen para el equipo](04-resumen-piloto-galapa.md).
+Continúa en [investigación de mercado](02-investigacion.md), [resumen para el equipo](04-resumen-piloto-galapa.md) y [requisitos de la beta móvil](05-requisitos-moviles.md).

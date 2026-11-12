@@ -1,6 +1,6 @@
 # Bases de la documentación técnica
 
-**Versión 0.1 · 12 de noviembre de 2026 · Arquitectura y reglas propuestas para la beta**
+**Versión 0.2 · 12 de noviembre de 2026 · Arquitectura y reglas para la beta**
 
 ## Arquitectura inicial
 
@@ -17,7 +17,7 @@ App y panel consultan una API autenticada. Los permisos se comprueban por recurs
 
 | Entidad | Datos y restricciones principales |
 | --- | --- |
-| Cuenta y perfil de proveedor | Identidad de acceso, rol, estado, nombre comercial, rubros que atiende, cobertura de atención y aprobación operativa. Los datos legales de identificación se guardan con acceso restringido según la política que se apruebe. |
+| Cuenta y perfil de proveedor | Acceso por código de correo. Una misma cuenta puede comprar y, con aprobación, usar un perfil comercial con nombre, rubros y cobertura. Los datos legales de identificación se guardan con acceso restringido según la política que se apruebe. |
 | Solicitud | Comprador, categoría, tipo de necesidad, municipio, zona aproximada, descripción, fecha requerida y vencimiento. Según el caso puede incluir cantidad, unidad, modalidad, adjuntos y presupuesto privado. |
 | Cotización | Solicitud, proveedor, revisión, alcance ofrecido, disponibilidad, modalidad, fecha prometida, precio, cargos adicionales aplicables, total y vencimiento. Una cotización vigente por proveedor y solicitud. |
 | Acuerdo | Una fila única por solicitud aceptada, comprador, proveedor y copia de las condiciones aceptadas. Fechas de aceptación y confirmación de cumplimiento, o motivo de cancelación. El acuerdo conserva su trazabilidad si cambia el perfil del comercio. |
@@ -46,15 +46,15 @@ App y panel consultan una API autenticada. Los permisos se comprueban por recurs
 - **Rol de la plataforma en Colombia.** Solicitar revisión jurídica antes de publicar para determinar las obligaciones del flujo concreto, incluida la aplicabilidad del artículo 53 de la Ley 1480, qué información del proveedor debe recabarse y cómo se facilita a quien pueda solicitarla. Resolver con esa revisión los términos, la atención de reclamos y el efecto de aceptar una oferta en la app. [Estatuto del Consumidor](https://www1.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306) · [Concepto de la SIC sobre portales de contacto](https://sedeelectronica.sic.gov.co/publicaciones/boletin-juridico/concepto/los-portales-de-contacto-no-hacen-parte-de-la-relacion-de-consumo-quien-responde-ante-los-consumidores)
 - **Cobros futuros.** Diseñar por separado los pagos de productos o servicios y cualquier compra de funciones digitales, como créditos o suscripciones. Cada flujo requiere revisar políticas de cobro de tiendas y el modelo de operación en Colombia antes de implementarse. [Apple, secciones 3.1.1 y 3.1.3(e)](https://developer.apple.com/app-store/review/guidelines/#payments) · [Política de pagos de Google Play](https://support.google.com/googleplay/android-developer/answer/9858738?hl=en)
 
-## Qué documentar a continuación
+## Documentación técnica y siguientes entregas
 
-| Orden | Documento | Decisiones que debe cerrar |
+| Documento | Contenido | Siguiente decisión o verificación |
 | --- | --- | --- |
-| 1 | Historias de usuario y criterios de aceptación | Roles por cuenta, campos comunes y opcionales para productos y servicios, vigencias por defecto, cambios con ofertas activas y pantalla para solicitudes sin respuesta. |
-| 2 | Prototipo móvil y reglas de operación | Flujo de compra y cotización, alcance de la aprobación del comercio, qué contacto se comparte, cancelación, reportes y tiempos de atención. |
-| 3 | Diagrama entidad-relación, estados y matriz de permisos | Identidad, restricciones, eventos, concurrencia al aceptar, historial y datos visibles por rol y etapa. |
-| 4 | Contrato OpenAPI y decisiones de arquitectura | Recursos, autenticación, paginación, errores, reintentos, cargas de fotos y la elección de proveedores de identidad, archivos y push tras la prueba técnica. |
-| 5 | Plan de pruebas, medición y publicación | Pruebas en ambos sistemas, telemetría de la fase 0, restauración de respaldos, responsables de soporte y preparación de tiendas. |
+| [Requisitos de la beta](05-requisitos-moviles.md) | Historias, criterios de aceptación y reglas para solicitudes y cotizaciones. | Acordar vigencias, datos de aprobación y tiempos de atención. |
+| [Modelo de dominio y permisos](06-dominio-y-permisos.md) | Relaciones, estados, visibilidad, concurrencia y auditoría. | Revisar con operaciones qué información se muestra en un acuerdo y qué datos se retienen. |
+| [Contrato de la API móvil](07-api-movil.md) | Primer recorrido, paginación, errores y reintentos. | Ampliar a catálogos, operaciones internas, adjuntos y avisos después de revisar el contrato inicial. |
+| Prueba de arquitectura | Verificar acceso por correo, sesión, fotos privadas y push con un dispositivo de cada sistema. | Elegir proveedores de identidad, archivos y push con los resultados. |
+| Prototipo y plan de pruebas | Pantallas para ambos roles y pruebas de pérdida de red, caducidades, permisos, concurrencia y restauración. | Acordar dispositivos de prueba, responsables de soporte y preparación de tiendas. |
 
 ### Primera entrega técnica tras validar el piloto
 

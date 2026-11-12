@@ -10,5 +10,8 @@ Aplicación móvil para solicitar un producto o servicio, recibir cotizaciones d
 | [Definición de producto y plan por fases](docs/01-producto-y-fases.md) | Alcance del MVP, recorrido de compradores y proveedores, métricas y plan de arranque. |
 | [Investigación de mercado](docs/02-investigacion.md) | Referentes, canales que ya usan los compradores y preguntas que debe responder el piloto. |
 | [Bases de la documentación técnica](docs/03-bases-tecnicas.md) | Arquitectura propuesta, reglas y datos del dominio, decisiones abiertas y primera entrega móvil. |
+| [Requisitos de la beta móvil](docs/05-requisitos-moviles.md) | Decisiones confirmadas, historias, criterios de aceptación y orden de entrega. |
+| [Modelo de dominio y permisos](docs/06-dominio-y-permisos.md) | Relaciones, estados, datos visibles y reglas para acciones simultáneas. |
+| [API móvil](docs/07-api-movil.md) | Convenciones de integración, errores y enlace al contrato OpenAPI. |
 
 El **primer paso** es reclutar compradores con una compra pendiente y proveedores dispuestos a cotizar. Operar sus primeras solicitudes con un formulario y una plantilla de cotización mientras se prueba el flujo en un prototipo móvil.
