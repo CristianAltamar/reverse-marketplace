@@ -1,0 +1,18 @@
+# Skills para el desarrollo y la revisión técnica
+
+**Catálogo consultado el 13 de noviembre de 2026**
+
+Estas son skills de agentes mantenidas por los proveedores indicados. La selección documenta cuándo conviene utilizarlas durante la implementación. El repositorio contiene por ahora documentación y el contrato inicial de API.
+
+| Prioridad y tema | Skill y editor | Cuándo aplicarla |
+| --- | --- | --- |
+| Inicial · Seguridad de aplicación | `security-best-practices` de OpenAI. [Skill curada](https://github.com/openai/skills/blob/main/skills/.curated/security-best-practices/SKILL.md) | Al revisar la API TypeScript y el panel React. Aplicar sus referencias según el framework elegido y contrastar móvil con MASVS. |
+| Inicial · Modelo de amenazas | `threat-model` del plugin Codex Security de OpenAI. [Skill del plugin](https://github.com/openai/plugins/blob/main/plugins/codex-security/skills/threat-model/SKILL.md) | Al revisar identidad, adjuntos, contactos, aprobación de comercios y adjudicación. Enfocarla en controles, pruebas defensivas y mitigaciones del proyecto. |
+| Inicial · Consultas y optimización de base | `supabase-postgres-best-practices` de Supabase. [Catálogo oficial](https://github.com/supabase/agent-skills#supabase-postgres-best-practices) | Al diseñar índices, revisar planes, dimensionar conexiones y verificar paginación. Las recomendaciones generales de PostgreSQL aplican con cualquier proveedor. |
+| Inicial · Rendimiento móvil | `react-native-guidelines` de Vercel. [Catálogo oficial](https://github.com/vercel-labs/agent-skills#react-native-guidelines) | Al implementar listados, fotos y navegación, y al revisar render en dispositivos. |
+| Inicial · Red y builds móviles | `expo-data-fetching`, `expo-dev-client` y `expo-upgrade` de Expo. [Catálogo oficial](https://github.com/expo/skills) | Al implementar estados de red, probar builds propios y actualizar el SDK junto con sus dependencias compatibles. |
+| Tras elegir ORM · Prisma | `prisma-8`, distribuida con el paquete correspondiente, para la línea 8. `prisma-cli` y `prisma-client-api` de Prisma para la línea 7. [Catálogo oficial](https://github.com/prisma/skills) | Usar la guía de la línea fijada durante la prueba de migraciones, conexiones y transacciones. Verificar el alcance antes de aplicar instrucciones de configuración o despliegue. |
+| Antes de beta · Carga y seguimiento | `k6-docs` y `k6-test-maintenance` de Grafana Labs. [Consulta de k6](https://github.com/grafana/skills/blob/main/skills/grafana-k6/k6-docs/SKILL.md) · [Mantenimiento de pruebas](https://github.com/grafana/skills/blob/main/skills/grafana-k6/k6-test-maintenance/SKILL.md) | Al preparar la prueba de carga, umbrales y revisión de regresiones con datos sintéticos y ambientes del proyecto. |
+| Cuando exista el panel · Rendimiento y pruebas web | `react-best-practices` de Vercel y `playwright-interactive` de OpenAI. [React](https://github.com/vercel-labs/agent-skills#react-best-practices) · [Playwright interactivo](https://github.com/openai/skills/tree/main/skills/.curated/playwright-interactive) | Aplicar las reglas pertinentes a React en cliente y recorrer admisión, aprobación de comercios y casos de soporte desde el navegador. |
+
+La revisión inicial puede empezar con seguridad de aplicación, modelo de amenazas, PostgreSQL y React Native. Seleccionar las skills de Prisma después de decidir la línea. Al adoptarlas, revisar el `SKILL.md` y las dependencias, fijar la revisión cuando se copie al repositorio y registrar la fecha de actualización. Los criterios de aceptación y métricas se mantienen en los documentos del proyecto. [Seguridad y privacidad](09-seguridad-y-privacidad.md) · [Rendimiento y operación](11-rendimiento-y-operacion.md)

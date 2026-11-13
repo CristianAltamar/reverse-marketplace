@@ -1,23 +1,24 @@
 # Requisitos de la primera versión móvil
 
-**Borrador técnico v0.2 · 12 de noviembre de 2026**
+**Borrador técnico v0.3 · 13 de noviembre de 2026**
 
 ## Decisiones confirmadas
 
 | Tema | Regla para la beta |
 | --- | --- |
 | Acceso | Compradores y comercios se identifican con un código de un solo uso enviado al correo. El proveedor de identidad se elegirá después de probar la entrega del correo y el manejo de sesiones. |
+| Admisión | El registro de la beta está abierto. El equipo revisa el ingreso y habilita a los compradores. La aprobación comercial es una decisión posterior e independiente. |
 | Cuenta y comercio | Una cuenta admitida puede comprar. Puede activar el perfil comercial después de que operaciones lo apruebe. Cambiar de vista en el teléfono conserva la sesión y el historial. |
 | Aclaraciones | La solicitud y la cotización incluyen la información para decidir. Si falta un dato, el equipo ayuda por el canal de soporte. Los participantes actualizan sus datos siguiendo las reglas de edición. |
 | Cancelación después de aceptar | El comprador solicita la cancelación a soporte. Operaciones revisa el caso y registra la decisión y el motivo. |
 
-El piloto asistido utiliza formulario y WhatsApp en todo Galapa, con pocos compradores y comercios de distintos rubros. La beta móvil usa el mismo flujo comercial y admite cuentas invitadas. El alcance geográfico corresponde al municipio. Cada comercio participa según los rubros y zonas que atiende.
+El piloto asistido utiliza formulario y WhatsApp en todo Galapa, con pocos compradores y comercios invitados de distintos rubros. La beta móvil usa el mismo flujo comercial con registro abierto y admisión manual. El alcance geográfico corresponde al municipio. Cada comercio participa según los rubros y zonas que atiende.
 
 ## Historias y criterios de aceptación
 
 | ID | Historia | Criterio verificable |
 | --- | --- | --- |
-| M01 | Entrar con código por correo. | Al verificar un código válido y tener acceso a la beta, se abre la cuenta. Un código vencido o usado requiere uno nuevo. Repetir el ingreso con el mismo correo conserva la misma cuenta. |
+| M01 | Entrar con código por correo. | Al verificar un código válido se abre la cuenta. Una cuenta pendiente ve su estado y accede al flujo comercial tras la aprobación del equipo. Un código vencido o usado requiere uno nuevo. Repetir el ingreso con el mismo correo conserva la cuenta. |
 | M02 | Activar el perfil comercial. | La cuenta registra nombre comercial, contacto, rubros y cobertura y envía el perfil a revisión. Puede comprar mientras espera. Solo un comercio aprobado y habilitado puede ver oportunidades y cotizar. |
 | M03 | Publicar una necesidad. | El comprador selecciona producto o servicio, rubro, zona aproximada y fecha requerida, y describe lo necesario. Cantidad, unidad, modalidad preferida, fotos y presupuesto son campos según el caso. Puede guardar un borrador, publicarlo y ver su estado. El presupuesto privado queda en su vista. |
 | M04 | Encontrar y cotizar una solicitud. | Un comercio aprobado ve solicitudes abiertas para sus rubros y cobertura. Indica qué incluye, disponibilidad, modalidad, fecha prometida, precio, cargos aplicables y vigencia. El servidor calcula el total. El comercio ve sus revisiones y el estado de su oferta. |
@@ -39,8 +40,8 @@ El piloto asistido utiliza formulario y WhatsApp en todo Galapa, con pocos compr
 ## Orden de entrega y salida a beta
 
 1. **Recorrido con cuentas de prueba.** Acceso, un producto y un servicio, publicación, dos ofertas, comparación, aceptación y confirmación. Verificar el recorrido con Android e iOS y con notificaciones desactivadas.
-2. **Operación de la beta.** Invitaciones y aprobación de comercios, adjuntos privados, panel de casos, reportes, bloqueo, avisos, reseñas y eliminación de cuenta. Acordar el horario y el responsable de soporte.
-3. **Revisión previa a invitados.** Validar permisos con cuentas cruzadas, reintentos y acciones simultáneas, caducidades, enlaces de avisos, pérdida de red y restauración de respaldo en beta. Comprobar que el equipo puede tramitar una cancelación, un reporte y una eliminación de cuenta.
+2. **Operación de la beta.** Registro abierto, admisión y aprobación comercial, adjuntos privados, panel de casos, reportes, bloqueo, avisos, reseñas y eliminación de cuenta. Acordar el horario y el responsable de soporte.
+3. **Revisión previa a usuarios reales.** Validar permisos con cuentas cruzadas, reintentos y acciones simultáneas, caducidades, enlaces de avisos, pérdida de red y restauración de respaldo en beta. Comprobar que el equipo puede tramitar una cancelación, un reporte y una eliminación de cuenta.
 
 El equipo debe fijar antes de configurar la beta los plazos de publicación y cotización, el catálogo inicial de rubros y zonas, los datos de aprobación comercial, los tiempos de atención y el manejo de una cotización que supera el plazo requerido. El registro operativo del piloto sirve para definir esos valores y establecer una línea de medición.
 

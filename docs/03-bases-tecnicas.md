@@ -1,14 +1,16 @@
 # Bases de la documentación técnica
 
-**Versión 0.2 · 12 de noviembre de 2026 · Arquitectura y reglas para la beta**
+**Versión 0.3 · 13 de noviembre de 2026 · Resumen técnico para la beta**
+
+Ver [tecnologías y arquitectura](08-tecnologias-y-arquitectura.md) para las versiones, referencias y la prueba de compatibilidad de Prisma.
 
 ## Arquitectura inicial
 
 | Componente | Propuesta | Motivo y validación |
 | --- | --- | --- |
 | App de compradores y proveedores | React Native, Expo y TypeScript. Una app para Android e iOS con navegación según el rol. | Compartir el flujo y probar registro, fotos, enlaces y notificaciones en dispositivos de ambos sistemas desde la primera iteración. Usar builds de desarrollo. [Expo Development Builds](https://docs.expo.dev/develop/development-builds/introduction/) |
-| API y operaciones | Node.js, Express y TypeScript. API REST modular y un panel web interno básico con acceso de administrador. | Mantener solicitudes, cotizaciones, acuerdos, reputación y moderación en un mismo backend. La API aplica permisos y transiciones para la app y el panel. |
-| Base de datos, identidad y archivos | PostgreSQL y servicios administrados. Supabase es un candidato para base de datos, acceso por código de correo y almacenamiento privado de fotos. | Reducir operación inicial. Probar entrega del correo, verificación de tokens en la API, migraciones, respaldos y acceso privado a adjuntos antes de elegir proveedor. [Supabase Auth](https://supabase.com/docs/guides/auth) · [Supabase Storage](https://supabase.com/docs/guides/storage/security/access-control) |
+| API y operaciones | Node.js 26 LTS, pnpm y TypeScript. Fastify como propuesta HTTP y React con Vite para el panel interno. | Mantener solicitudes, cotizaciones, acuerdos, reputación y moderación en un mismo backend. La API aplica permisos y transiciones para la app y el panel. |
+| Base de datos, identidad y archivos | Prisma, PostgreSQL y servicios administrados. Evaluar Prisma 8 y probar Prisma 7 estable en Node 26 como contingencia. Supabase es candidato para base de datos, acceso por código de correo y almacenamiento privado de fotos. | Probar correo, verificación de tokens, migraciones, respaldo y acceso privado a adjuntos antes de elegir proveedor. [Supabase Auth](https://supabase.com/docs/guides/auth) · [Supabase Storage](https://supabase.com/docs/guides/storage/security/access-control) |
 | Avisos | Bandeja persistente en la app y push con Expo Notifications como opción inicial. | El aviso se registra en servidor. Un proceso en segundo plano envía y reintenta push sin duplicar el aviso. Validar credenciales, tokens y apertura del detalle en Android e iOS. [Configuración de push en Expo](https://docs.expo.dev/push-notifications/push-notifications-setup/) |
 
 App y panel consultan una API autenticada. Los permisos se comprueban por recurso y actor en servidor. Si se adopta Supabase, los clientes usan Auth para iniciar sesión y la API controla el acceso al dominio y los enlaces temporales a archivos. Las credenciales privilegiadas viven en servidor. Cada ambiente tiene su propia configuración y sus propios datos. Se proponen entornos local, beta y producción.

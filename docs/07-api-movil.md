@@ -46,4 +46,4 @@ Las respuestas incluyen `code`, `message` y `requestId` para rastrear un caso de
 
 ## Siguiente ampliación del contrato
 
-Agregar perfil y aprobación comercial, catálogos, edición y cancelación de una solicitud abierta, retiro de una oferta, resolución de casos y consulta del historial de soporte. Después, añadir adjuntos, avisos, reseñas, reportes, bloqueo y eliminación de cuenta. Estas capacidades están en los [requisitos de beta](05-requisitos-moviles.md) y su orden sigue el [modelo de permisos y estados](06-dominio-y-permisos.md).
+Agregar registro abierto con admisión, perfil y aprobación comercial, catálogos, edición y cancelación de una solicitud abierta, retiro de una oferta, resolución de casos y consulta del historial de soporte. Después, añadir adjuntos, avisos, reseñas, reportes, bloqueo y eliminación de cuenta. Consultar el [inventario de rutas por entrega](10-solicitudes-rutas-y-procesos.md) y el [modelo de permisos y estados](06-dominio-y-permisos.md).

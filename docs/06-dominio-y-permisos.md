@@ -27,7 +27,7 @@ erDiagram
 
 | Registro | Claves y datos relevantes |
 | --- | --- |
-| Cuenta | Identificador interno y sujeto del proveedor de identidad únicos. Estado de acceso a la beta. El correo de acceso se mantiene separado del contacto comercial que se muestra tras aceptar. |
+| Cuenta | Identificador interno y sujeto del proveedor de identidad únicos. El registro por correo inicia con admisión `pending`. Operaciones la aprueba para habilitar compras. El correo de acceso se mantiene separado del contacto comercial que se muestra tras aceptar. |
 | Comercio y cobertura | Propietario único en la beta, estado `pending`, `approved`, `rejected` o `suspended`, datos de contacto, varios rubros y cobertura municipal completa o lista de zonas. Operaciones registra quién aprobó o suspendió y cuándo. |
 | Rubro y zona | Códigos estables gestionados por operaciones. Una zona pertenece al catálogo de Galapa. Se permite un código provisional `OTHER` para sectores por clasificar. |
 | Solicitud | Comprador, rubro, zona aproximada, tipo `product` o `service`, descripción, fecha requerida, estado, adjuntos y presupuesto privado opcional. Guarda cuándo se publicó y cuándo vence. |
